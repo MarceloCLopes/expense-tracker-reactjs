@@ -1,4 +1,5 @@
 import { formatCurrentMonth } from "../../helpers/dateFilter";
+import { ResumeItem } from "../ResumeItem";
 import * as S from "./styles";
 
 type Props = {
@@ -39,7 +40,15 @@ export const InfoArea = ({
         <S.MonthTitle>{formatCurrentMonth(currentMonth)}</S.MonthTitle>
         <S.MonthArrow onClick={handleNextMonth}>➡️</S.MonthArrow>
       </S.MonthArea>
-      <S.ResumeArea></S.ResumeArea>
+      <S.ResumeArea>
+        <ResumeItem title="Receitas" value={income} />
+        <ResumeItem title="Despesas" value={expense} />
+        <ResumeItem
+          title="Balanço"
+          value={income - expense}
+          color={income - expense < 0 ? "red" : "green"}
+        />
+      </S.ResumeArea>
     </S.Container>
   );
 };
